@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:background="#6000"
+        android:orientation="horizontal" >
+    </RadioGroup>
+
+    <com.wzh.customviewpager.CustomViewPager
+        android:id="@+id/cvp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </com.wzh.customviewpager.CustomViewPager>
+
+</LinearLayout>
