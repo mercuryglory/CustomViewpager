@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!--我找票按钮没有被选中时-->
+    <item >
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/white" />
+            <corners
+                android:bottomRightRadius="5dp"
+                android:topRightRadius="5dp" />
+        </shape >
+    </item >
+
+    <item
+        android:bottom="1dp"
+        android:right="1dp"
+        android:top="1dp" >
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/transparent" />
+            <corners
+                android:bottomRightRadius="4dp"
+                android:topRightRadius="4dp" />
+        </shape >
+
+    </item >
+
+</layer-list >

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_change"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wzh.customviewpager.ChangeActivity" >
+
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_margin="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/btn_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_select_havebill"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:padding="10dp"
+            android:onClick="setLeft"
+            android:text="左边"
+            android:textColor="@color/select_billmall" />
+
+        <RadioButton
+            android:id="@+id/btn_right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_select_findbill"
+            android:button="@null"
+            android:gravity="center"
+            android:onClick="setRight"
+            android:padding="10dp"
+            android:text="右边"
+            android:textColor="@color/select_billmall" />
+    </RadioGroup >
+
+    <com.wzh.customviewpager.NoScrollViewPager
+        android:layout_below="@id/rg"
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+    </com.wzh.customviewpager.NoScrollViewPager >
+
+</RelativeLayout >
