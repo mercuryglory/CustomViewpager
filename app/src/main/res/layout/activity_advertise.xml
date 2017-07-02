@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     tools:context=".TestActivity" >
 
-    <android.support.v4.view.ViewPager
+    <com.wzh.customviewpager.ui.BannerViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="160dp" >
-    </android.support.v4.view.ViewPager>
+    </com.wzh.customviewpager.ui.BannerViewPager>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,8 +25,8 @@
             android:layout_margin="5dp"
             android:text="这是广告条的描述信息"
             android:textColor="#fff" />
-        <!-- 水平的线性布局用来显示小圆点 -->
 
+        <!-- 水平的线性布局用来显示小圆点 -->
         <LinearLayout
             android:id="@+id/ll_point_group"
             android:layout_width="wrap_content"

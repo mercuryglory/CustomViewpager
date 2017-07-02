@@ -8,15 +8,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
 
+import com.wzh.customviewpager.ui.NoScrollViewPager;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeActivity extends AppCompatActivity {
     List<Fragment> fragments = new ArrayList<>();
-    MyAdapter mMyAdapter;
+    MyAdapter         mMyAdapter;
     NoScrollViewPager vp;
-    RadioButton btnLeft;
-    RadioButton btnRight;
+    RadioButton       btnLeft;
+    RadioButton       btnRight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

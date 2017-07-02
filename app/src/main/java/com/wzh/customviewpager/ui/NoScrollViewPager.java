@@ -1,4 +1,4 @@
-package com.wzh.customviewpager;
+package com.wzh.customviewpager.ui;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

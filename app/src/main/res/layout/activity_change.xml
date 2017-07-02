@@ -42,12 +42,12 @@
             android:textColor="@color/select_billmall" />
     </RadioGroup >
 
-    <com.wzh.customviewpager.NoScrollViewPager
+    <com.wzh.customviewpager.ui.NoScrollViewPager
         android:layout_below="@id/rg"
         android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-    </com.wzh.customviewpager.NoScrollViewPager >
+    </com.wzh.customviewpager.ui.NoScrollViewPager >
 
 </RelativeLayout >
