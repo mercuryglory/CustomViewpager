@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 /**
  * Created by Mercury on 2017/7/2.
+ * 自定义控件，以viewpager实现轮播图的效果
  */
 
 public class BannerViewPager extends ViewPager {

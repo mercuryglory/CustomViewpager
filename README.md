@@ -2,8 +2,8 @@
 自定义ViewPager,实现的效果就是下部图片加上部导航点,随着手势的向左向右,协同滑动
 
 # NoScrollViewPager
-ViewPager禁止滑动
+禁止滑动的ViewPager，可用于不需要滑动的Fragment搭建
 
-# AdvertiseBanner
-广告轮播图
-该自定义控件直接写在一个Activity里面,将ViewPager,LinearLayout,TextView组合在一个布局当中.后面应将其修改为继承ViewGroup,进一步完善其功能,暴露可公共调用的方法,可以根据输入的网址,动态的加载轮播图
+# BannerViewPager
+轮播图
+该自定义控件已从Activity分离出来成为一个独立的控件,继承ViewPager,内部实现了一些方法。目前LinearLayout,TextView组合在一个布局当中还是在Activity中通过监听该控件页面选中的序号实现的，需要进一步完善其功能,暴露可公共调用的方法,除了传入imageview的resIds。还可以根据输入的网址,动态的加载轮播图
