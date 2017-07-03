@@ -1,6 +1,7 @@
 package com.wzh.customviewpager.ui;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
@@ -10,6 +11,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 /**
  * Created by Mercury on 2017/7/2.
@@ -53,6 +57,26 @@ public class BannerViewPager extends ViewPager {
         mBannerAdapter = new BannerAdapter();
         this.setAdapter(mBannerAdapter);
         mHandler.sendEmptyMessageDelayed(0, 2000);
+
+        LinearLayout linearLayout = new LinearLayout(mContext);
+//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams
+//                .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        params.gravity = Gravity.CENTER_VERTICAL;
+//        linearLayout.setLayoutParams(params);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup
+                .LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM, this.getId());
+        linearLayout.setLayoutParams(layoutParams);
+        TextView textView = new TextView(mContext);
+        textView.setText("放在控件里面");
+        textView.setTextColor(Color.parseColor("#ff0000"));
+        linearLayout.addView(textView);
+        this.addView(linearLayout);
+
+        for (int i = 0; i < imageResIds.length; i++) {
+
+        }
     }
 
     @Override
