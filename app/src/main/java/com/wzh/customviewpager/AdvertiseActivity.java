@@ -7,7 +7,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.wzh.customviewpager.ui.BannerViewPager;
+import com.wzh.customviewpager.ui.CarouselGroup;
+import com.wzh.customviewpager.ui.CarouselViewPager;
 
 /**
  * created by Mercury at 2017/7/2
@@ -15,7 +16,8 @@ import com.wzh.customviewpager.ui.BannerViewPager;
  */
 public class AdvertiseActivity extends AppCompatActivity {
 
-    private BannerViewPager mViewpager;
+    private CarouselViewPager mViewpager;
+    private CarouselGroup mGroup;
     private int[]    imageResIds  = {R.drawable.a, R.drawable.b, R.drawable.c,
             R.drawable.d, R.drawable.e};
     private String[] descriptions = {"巩俐不低俗，我就不能低俗", "朴树又回来啦！再唱经典老歌引万人大合唱",
@@ -29,7 +31,7 @@ public class AdvertiseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advertise);
-        mViewpager = (BannerViewPager) findViewById(R.id.viewpager);
+        mViewpager = (CarouselViewPager) findViewById(R.id.viewpager);
         mTv_decription = (TextView) findViewById(R.id.tv_decription);
         mLl_point_group = (LinearLayout) findViewById(R.id.ll_point_group);
         int startOffset = Integer.MAX_VALUE / 2 % imageResIds.length;
@@ -37,6 +39,9 @@ public class AdvertiseActivity extends AppCompatActivity {
 
         initData();
         initEvent();
+
+        mGroup = (CarouselGroup) findViewById(R.id.ca_group);
+        mGroup.setCarouselAdapter(imageResIds);
 
     }
 

@@ -14,4 +14,5 @@
     <color name="light_red">#FF4040</color>
     <color name="black">#333333</color>
     <color name="line_color">#CCCCCC</color>
+    <color name="half_transparent">#6000</color>
 </resources >

@@ -21,7 +21,7 @@ import android.widget.TextView;
  * 自定义控件，以viewpager实现轮播图的效果
  */
 
-public class BannerViewPager extends ViewPager {
+public class CarouselViewPager extends ViewPager {
 
     private BannerAdapter mBannerAdapter;
     private int[] imageResIds;
@@ -33,8 +33,8 @@ public class BannerViewPager extends ViewPager {
             switch (msg.what) {
                 case 0:
                     // 将广告条显示到下一个
-                    int currentItem = BannerViewPager.this.getCurrentItem();
-                    BannerViewPager.this.setCurrentItem(currentItem + 1);
+                    int currentItem = CarouselViewPager.this.getCurrentItem();
+                    CarouselViewPager.this.setCurrentItem(currentItem + 1);
                     mHandler.sendEmptyMessageDelayed(0, 2000);
                     break;
 
@@ -44,13 +44,22 @@ public class BannerViewPager extends ViewPager {
         }
     };
 
-    public BannerViewPager(Context context) {
+    public CarouselViewPager(Context context) {
         super(context);
+        mContext = context;
     }
 
-    public BannerViewPager(Context context, AttributeSet attrs) {
+    public CarouselViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int a = getMeasuredWidth();
+        int b = getMeasuredHeight();
+        int c = 1;
     }
 
     public void setBannerAdapter(int[] ids) {
