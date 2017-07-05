@@ -8,6 +8,14 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="160dp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="123"
+            android:textColor="@color/black"
+            android:gravity="center"
+            />
     </com.wzh.customviewpager.ui.BannerViewPager>
 
     <LinearLayout

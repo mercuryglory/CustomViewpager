@@ -7,6 +7,7 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,20 +60,20 @@ public class BannerViewPager extends ViewPager {
         mHandler.sendEmptyMessageDelayed(0, 2000);
 
         LinearLayout linearLayout = new LinearLayout(mContext);
-//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams
-//                .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//        params.gravity = Gravity.CENTER_VERTICAL;
-//        linearLayout.setLayoutParams(params);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams
+                .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.gravity = Gravity.CENTER_VERTICAL;
+        linearLayout.setLayoutParams(params);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
+
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup
                 .LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM, this.getId());
-        linearLayout.setLayoutParams(layoutParams);
+        layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM);
         TextView textView = new TextView(mContext);
         textView.setText("放在控件里面");
         textView.setTextColor(Color.parseColor("#ff0000"));
         linearLayout.addView(textView);
-        this.addView(linearLayout);
+        this.addView(linearLayout, layoutParams);
 
         for (int i = 0; i < imageResIds.length; i++) {
 
