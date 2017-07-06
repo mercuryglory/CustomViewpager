@@ -1,20 +1,17 @@
 package com.wzh.customviewpager.ui;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 /**
  * Created by Mercury on 2017/7/2.
@@ -26,6 +23,7 @@ public class CarouselViewPager extends ViewPager {
     private BannerAdapter mBannerAdapter;
     private int[] imageResIds;
     private Context mContext;
+    private int prePosition = 0;
 
     private Handler mHandler = new Handler(){
         @Override
@@ -52,6 +50,33 @@ public class CarouselViewPager extends ViewPager {
     public CarouselViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
+
+
+    }
+
+    protected void initListener(final LinearLayout llpointGroup) {
+        this.addOnPageChangeListener(new OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                int pos = position / imageResIds.length;
+                //先把前一个点设置未未选中
+                Log.i("page", "pos:" + pos + "\tpre" + prePosition);
+                llpointGroup.getChildAt(prePosition).setEnabled(false);
+                prePosition = pos;
+                llpointGroup.getChildAt(pos).setEnabled(true);
+                int a = 1;
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -62,31 +87,15 @@ public class CarouselViewPager extends ViewPager {
         int c = 1;
     }
 
+
     public void setBannerAdapter(int[] ids) {
         this.imageResIds = ids;
+//        int startOff = Integer.MAX_VALUE / 2 % imageResIds.length;
+//        this.setCurrentItem(Integer.MAX_VALUE / 2 - startOff);
         mBannerAdapter = new BannerAdapter();
         this.setAdapter(mBannerAdapter);
         mHandler.sendEmptyMessageDelayed(0, 2000);
 
-        LinearLayout linearLayout = new LinearLayout(mContext);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams
-                .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.gravity = Gravity.CENTER_VERTICAL;
-        linearLayout.setLayoutParams(params);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup
-                .LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM);
-        TextView textView = new TextView(mContext);
-        textView.setText("放在控件里面");
-        textView.setTextColor(Color.parseColor("#ff0000"));
-        linearLayout.addView(textView);
-        this.addView(linearLayout, layoutParams);
-
-        for (int i = 0; i < imageResIds.length; i++) {
-
-        }
     }
 
     @Override

@@ -78,7 +78,6 @@ public class CustomViewPager extends ViewGroup {
 		
 		case MotionEvent.ACTION_UP:
 			int scrollX = getScrollX();
-			//System.out.println("scrollX:" + scrollX);
 			int position=(scrollX+getWidth()/2)/getWidth();
 			//scrollTo(position*getWidth(), 0);
 			
@@ -140,7 +139,6 @@ public class CustomViewPager extends ViewGroup {
 	public void computeScroll() {
 		if(scroller.computeScrollOffset()){
 			int currX = scroller.getCurrX();
-			//System.out.println("currX:" + currX);
 			scrollTo(currX, 0);
 			invalidate();
 		}

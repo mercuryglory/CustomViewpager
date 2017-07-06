@@ -38,7 +38,7 @@ public class CarouselGroup extends RelativeLayout {
 
 
     public void setCarouselAdapter(int[] ids) {
-        mViewPager.setBannerAdapter(ids);
+
         int size = ids.length;
         LinearLayout linearLayout = new LinearLayout(mContext);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -61,13 +61,13 @@ public class CarouselGroup extends RelativeLayout {
 
 
 
-        LinearLayout linearLayout1 = new LinearLayout(mContext);
+        LinearLayout llpointGroup = new LinearLayout(mContext);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup
                 .LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
         layoutParams.bottomMargin = 10;
-        linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
-        linearLayout1.setLayoutParams(layoutParams);
+        llpointGroup.setOrientation(LinearLayout.HORIZONTAL);
+        llpointGroup.setLayoutParams(layoutParams);
 
         for (int i = 0; i < size; i++) {
             ImageView imageView = new ImageView(mContext);
@@ -75,12 +75,16 @@ public class CarouselGroup extends RelativeLayout {
             params2.leftMargin = 10;
             imageView.setImageResource(R.drawable.point_bg_selector);
             imageView.setLayoutParams(params2);
+            imageView.setEnabled(false);
 
-            linearLayout1.addView(imageView);
+            llpointGroup.addView(imageView);
         }
 
-        linearLayout.addView(linearLayout1);
+        mViewPager.setBannerAdapter(ids);
+        linearLayout.addView(llpointGroup);
         this.addView(mViewPager);
+        mViewPager.initListener(llpointGroup);
         this.addView(linearLayout, params);
+
     }
 }

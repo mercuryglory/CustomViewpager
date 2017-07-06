@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
 			
 			@Override
 			public void onPageChange(int position) {
-				System.out.println("position:"+position);
 				// position刚好与RadioButton的id一一对应；position看作是单选按钮的id
 				mRadiogroup.check(position);
 			}
