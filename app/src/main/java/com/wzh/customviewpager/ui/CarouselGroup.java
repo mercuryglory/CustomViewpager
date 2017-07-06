@@ -37,9 +37,8 @@ public class CarouselGroup extends RelativeLayout {
     }
 
 
-    public void setCarouselAdapter(int[] ids) {
-
-        int size = ids.length;
+    public void setCarouselAdapter(int[] imageResIds, String[] description) {
+        int size = imageResIds.length;
         LinearLayout linearLayout = new LinearLayout(mContext);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setBackgroundColor(mContext.getResources().getColor(R.color.half_transparent));
@@ -50,16 +49,11 @@ public class CarouselGroup extends RelativeLayout {
         params1.gravity = Gravity.CENTER_HORIZONTAL;
 
         textView.setTextColor(mContext.getResources().getColor(R.color.white));
-        textView.setText("这是广告条的描述");
+        textView.setText(description[0]);
+
         textView.setPadding(10, 10, 10, 10);
         textView.setLayoutParams(params1);
-
         linearLayout.addView(textView);
-        RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams
-                .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-
-
 
         LinearLayout llpointGroup = new LinearLayout(mContext);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup
@@ -80,11 +74,15 @@ public class CarouselGroup extends RelativeLayout {
             llpointGroup.addView(imageView);
         }
 
-        mViewPager.setBannerAdapter(ids);
+        mViewPager.setBannerAdapter(imageResIds);
         linearLayout.addView(llpointGroup);
         this.addView(mViewPager);
-        mViewPager.initListener(llpointGroup);
+
+        RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams
+                .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         this.addView(linearLayout, params);
+        mViewPager.initListener(description, textView, llpointGroup);
 
     }
 }

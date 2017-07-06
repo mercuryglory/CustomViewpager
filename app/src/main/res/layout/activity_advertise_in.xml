@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestActivity" >
+
+    <com.wzh.customviewpager.ui.CarouselViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="160dp" >
+
+    </com.wzh.customviewpager.ui.CarouselViewPager >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/viewpager"
+        android:background="#6000"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_decription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="这是广告条的描述信息"
+            android:textColor="#fff" />
+
+        <!-- 水平的线性布局用来显示小圆点 -->
+        <LinearLayout
+            android:id="@+id/ll_point_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.wzh.customviewpager.ui.CarouselGroup
+        android:id="@+id/ca_group"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_alignParentBottom="true">
+
+    </com.wzh.customviewpager.ui.CarouselGroup >
+
+</RelativeLayout>

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * Created by Mercury on 2017/7/2.
@@ -23,6 +24,7 @@ public class CarouselViewPager extends ViewPager {
     private BannerAdapter mBannerAdapter;
     private int[] imageResIds;
     private Context mContext;
+    //用来记录上一个点的位置
     private int prePosition = 0;
 
     private Handler mHandler = new Handler(){
@@ -51,17 +53,24 @@ public class CarouselViewPager extends ViewPager {
         super(context, attrs);
         mContext = context;
 
-
     }
 
-    protected void initListener(final LinearLayout llpointGroup) {
+    protected void initListener(final String[] description, final TextView textView, final LinearLayout llpointGroup) {
+        //设置页面监听
         this.addOnPageChangeListener(new OnPageChangeListener() {
+            /**
+             * 轮播到该页面时调用该方法
+             * @param position
+             * @param positionOffset
+             * @param positionOffsetPixels
+             */
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                int pos = position / imageResIds.length;
-                //先把前一个点设置未未选中
-                Log.i("page", "pos:" + pos + "\tpre" + prePosition);
+                int pos = position % imageResIds.length;
+                //先把前一个点设置未选中
+                Log.i("page", "pos:" + pos + "\tpre:" + prePosition);
                 llpointGroup.getChildAt(prePosition).setEnabled(false);
+                textView.setText(description[pos]);
                 prePosition = pos;
                 llpointGroup.getChildAt(pos).setEnabled(true);
                 int a = 1;
