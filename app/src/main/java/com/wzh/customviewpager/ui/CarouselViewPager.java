@@ -71,9 +71,11 @@ public class CarouselViewPager extends ViewPager {
                 //先把前一个点设置为未选中
                 Log.i("page", "pos:" + pos + "\tpre:" + prePosition);
                 llpointGroup.getChildAt(prePosition).setSelected(false);
-                textView.setText(description[pos]);
                 prePosition = pos;
                 llpointGroup.getChildAt(pos).setSelected(true);
+                if (description != null && description.length == imageResIds.length) {
+                    textView.setText(description[pos]);
+                }
             }
 
             @Override

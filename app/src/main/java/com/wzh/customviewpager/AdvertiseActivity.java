@@ -14,8 +14,10 @@ public class AdvertiseActivity extends AppCompatActivity {
     private CarouselGroup mGroup;
     private int[]    imageResIds  = {R.drawable.a, R.drawable.b, R.drawable.c,
             R.drawable.d, R.drawable.e};
-    private String[] descriptions = {"巩俐不低俗，我就不能低俗", "朴树又回来啦！再唱经典老歌引万人大合唱",
-            "揭秘北京电影如何升级", "乐视网TV版大派送", "热血屌丝的反杀"};
+//    private String[] descriptions = {"巩俐不低俗，我就不能低俗", "朴树又回来啦！再唱经典老歌引万人大合唱",
+//            "揭秘北京电影如何升级", "乐视网TV版大派送", "热血屌丝的反杀"};
+    private String[] descriptions={"巩俐不低俗，我就不能低俗", "朴树又回来啦！再唱经典老歌引万人大合唱",
+                "揭秘北京电影如何升级", "乐视网TV版大派送"};
 
 
     @Override

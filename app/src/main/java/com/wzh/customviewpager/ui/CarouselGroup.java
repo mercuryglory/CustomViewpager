@@ -2,6 +2,7 @@ package com.wzh.customviewpager.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -26,7 +27,10 @@ public class CarouselGroup extends RelativeLayout {
     private float textPaddingTop;
     private float textPaddingRight;
     private float textPaddingBottom;
+    private int textColor;
+    private float pointGroupBottom;
     private int resourceId;
+    private int backGroundColor;
 
     public CarouselGroup(Context context) {
         this(context, null);
@@ -48,6 +52,10 @@ public class CarouselGroup extends RelativeLayout {
         textPaddingBottom = a.getDimension(R.styleable.CarouselGroup_textPaddingBottom, 10);
         resourceId = a.getResourceId(R.styleable.CarouselGroup_pointRes, R.drawable
                 .point_bg_selector);
+        textColor = a.getColor(R.styleable.CarouselGroup_textColor, Color.rgb(255, 255, 255));
+        pointGroupBottom = a.getDimension(R.styleable.CarouselGroup_pointGroupBottom, 15);
+        backGroundColor = a.getColor(R.styleable.CarouselGroup_backgroundColor, Color.argb(127, 0, 0, 0));
+
         a.recycle();
 
         mViewPager = new CarouselViewPager(context);
@@ -57,15 +65,20 @@ public class CarouselGroup extends RelativeLayout {
 
     public void setCarouselAdapter(int[] imageResIds, String[] description) {
         int size = imageResIds.length;
+
         //创建轮播图底部的线性布局，纵向排列
         LinearLayout linearLayout = new LinearLayout(mContext);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setBackgroundColor(mContext.getResources().getColor(R.color.half_transparent));
+        linearLayout.setBackgroundColor(backGroundColor);
 
         //创建显示在该布局中上部的描述文字
         TextView textView = new TextView(mContext);
-        textView.setTextColor(mContext.getResources().getColor(R.color.white));
-        textView.setText(description[0]);
+        textView.setTextColor(textColor);
+        if (description != null && description.length == size) {
+            textView.setText(description[0]);
+        } else {
+            textView.setVisibility(GONE);
+        }
 
         textView.setPadding((int) textPaddingLeft, (int) textPaddingTop, (int) textPaddingRight,
                 (int) textPaddingBottom);
@@ -80,8 +93,8 @@ public class CarouselGroup extends RelativeLayout {
         LinearLayout llpointGroup = new LinearLayout(mContext);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup
                 .LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
-        layoutParams.bottomMargin = 10;
+        layoutParams.gravity = Gravity.CENTER;
+        layoutParams.bottomMargin = (int) pointGroupBottom;
         llpointGroup.setOrientation(LinearLayout.HORIZONTAL);
         llpointGroup.setLayoutParams(layoutParams);
 

@@ -10,7 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         app:pointMarginLeft="10dp"
-        app:pointRes="@drawable/point_bg_selector1">
+        app:pointRes="@drawable/point_bg_selector1"
+        app:textColor="@color/light_red"
+        app:pointGroupBottom="10dp"
+        app:backgroundColor="@color/transparent">
 
     </com.wzh.customviewpager.ui.CarouselGroup >
 
