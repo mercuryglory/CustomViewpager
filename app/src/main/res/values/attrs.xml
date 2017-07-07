@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+
+    <declare-styleable name="CarouselGroup">
+
+        <attr name="pointMarginLeft" format="dimension"/>
+        <attr name="textPaddingLeft" format="dimension"/>
+        <attr name="textPaddingTop" format="dimension"/>
+        <attr name="textPaddingRight" format="dimension"/>
+        <attr name="textPaddingBottom" format="dimension"/>
+        <attr name="pointRes" format="reference"/>
+    </declare-styleable>
+</resources >

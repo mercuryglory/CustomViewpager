@@ -1,6 +1,7 @@
 package com.wzh.customviewpager.ui;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -13,12 +14,19 @@ import com.wzh.customviewpager.R;
 
 /**
  * Created by Mercury on 2017/7/5.
+ * 轮播图控件，包含轮播图，描述以及引导点
  */
 
 public class CarouselGroup extends RelativeLayout {
 
     CarouselViewPager mViewPager;
     private Context mContext;
+    private float pointMarginLeft;
+    private float textPaddingLeft;
+    private float textPaddingTop;
+    private float textPaddingRight;
+    private float textPaddingBottom;
+    private int resourceId;
 
     public CarouselGroup(Context context) {
         this(context, null);
@@ -32,6 +40,16 @@ public class CarouselGroup extends RelativeLayout {
         super(context, attrs, defStyleAttr);
         mContext = context;
 
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CarouselGroup, defStyleAttr, 0);
+        pointMarginLeft = a.getDimension(R.styleable.CarouselGroup_pointMarginLeft, 10);
+        textPaddingLeft = a.getDimension(R.styleable.CarouselGroup_textPaddingLeft, 10);
+        textPaddingTop = a.getDimension(R.styleable.CarouselGroup_textPaddingTop, 10);
+        textPaddingRight = a.getDimension(R.styleable.CarouselGroup_textPaddingRight, 10);
+        textPaddingBottom = a.getDimension(R.styleable.CarouselGroup_textPaddingBottom, 10);
+        resourceId = a.getResourceId(R.styleable.CarouselGroup_pointRes, R.drawable
+                .point_bg_selector);
+        a.recycle();
+
         mViewPager = new CarouselViewPager(context);
 
     }
@@ -39,22 +57,26 @@ public class CarouselGroup extends RelativeLayout {
 
     public void setCarouselAdapter(int[] imageResIds, String[] description) {
         int size = imageResIds.length;
+        //创建轮播图底部的线性布局，纵向排列
         LinearLayout linearLayout = new LinearLayout(mContext);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setBackgroundColor(mContext.getResources().getColor(R.color.half_transparent));
 
+        //创建显示在该布局中上部的描述文字
         TextView textView = new TextView(mContext);
-        LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams
-                .WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params1.gravity = Gravity.CENTER_HORIZONTAL;
-
         textView.setTextColor(mContext.getResources().getColor(R.color.white));
         textView.setText(description[0]);
 
-        textView.setPadding(10, 10, 10, 10);
-        textView.setLayoutParams(params1);
+        textView.setPadding((int) textPaddingLeft, (int) textPaddingTop, (int) textPaddingRight,
+                (int) textPaddingBottom);
+        //该textview在线性布局中的摆放方式
+        LinearLayout.LayoutParams textParam = new LinearLayout.LayoutParams(ViewGroup.LayoutParams
+                .WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        textParam.gravity = Gravity.CENTER_HORIZONTAL;
+        textView.setLayoutParams(textParam);
         linearLayout.addView(textView);
 
+        //创建一个横向的线性布局，动态的添加引导点
         LinearLayout llpointGroup = new LinearLayout(mContext);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup
                 .LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -65,11 +87,12 @@ public class CarouselGroup extends RelativeLayout {
 
         for (int i = 0; i < size; i++) {
             ImageView imageView = new ImageView(mContext);
-            LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(8, 8);
-            params2.leftMargin = 10;
-            imageView.setImageResource(R.drawable.point_bg_selector);
-            imageView.setLayoutParams(params2);
-            imageView.setEnabled(false);
+            LinearLayout.LayoutParams pointParam = new LinearLayout.LayoutParams(ViewGroup
+                    .LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            pointParam.leftMargin = (int) pointMarginLeft;
+            imageView.setImageResource(resourceId);
+            imageView.setLayoutParams(pointParam);
+            imageView.setSelected(false);
 
             llpointGroup.addView(imageView);
         }

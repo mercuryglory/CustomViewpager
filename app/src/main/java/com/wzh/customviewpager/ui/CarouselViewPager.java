@@ -1,6 +1,7 @@
 package com.wzh.customviewpager.ui;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
@@ -16,7 +17,7 @@ import android.widget.TextView;
 
 /**
  * Created by Mercury on 2017/7/2.
- * 自定义控件，以viewpager实现轮播图的效果
+ * 以viewpager实现轮播图的效果
  */
 
 public class CarouselViewPager extends ViewPager {
@@ -67,13 +68,12 @@ public class CarouselViewPager extends ViewPager {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 int pos = position % imageResIds.length;
-                //先把前一个点设置未选中
+                //先把前一个点设置为未选中
                 Log.i("page", "pos:" + pos + "\tpre:" + prePosition);
-                llpointGroup.getChildAt(prePosition).setEnabled(false);
+                llpointGroup.getChildAt(prePosition).setSelected(false);
                 textView.setText(description[pos]);
                 prePosition = pos;
-                llpointGroup.getChildAt(pos).setEnabled(true);
-                int a = 1;
+                llpointGroup.getChildAt(pos).setSelected(true);
             }
 
             @Override
@@ -91,16 +91,16 @@ public class CarouselViewPager extends ViewPager {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int a = getMeasuredWidth();
-        int b = getMeasuredHeight();
-        int c = 1;
+        int width = getMeasuredWidth();
+        int height = getMeasuredHeight();
+        Rect rect = new Rect();
+        getWindowVisibleDisplayFrame(rect);
+        int top = rect.top;
     }
 
 
     public void setBannerAdapter(int[] ids) {
         this.imageResIds = ids;
-//        int startOff = Integer.MAX_VALUE / 2 % imageResIds.length;
-//        this.setCurrentItem(Integer.MAX_VALUE / 2 - startOff);
         mBannerAdapter = new BannerAdapter();
         this.setAdapter(mBannerAdapter);
         mHandler.sendEmptyMessageDelayed(0, 2000);

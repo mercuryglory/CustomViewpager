@@ -2,12 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TestActivity" >
 
     <com.wzh.customviewpager.ui.CarouselGroup
         android:id="@+id/ca_group"
         android:layout_width="match_parent"
-        android:layout_height="160dp" >
+        android:layout_height="160dp"
+        app:pointMarginLeft="10dp"
+        app:pointRes="@drawable/point_bg_selector1">
 
     </com.wzh.customviewpager.ui.CarouselGroup >
 
