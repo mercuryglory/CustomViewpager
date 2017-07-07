@@ -1,4 +1,4 @@
-package com.wzh.customviewpager.ui;
+package com.mercury.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.wzh.customviewpager.R;
 
 /**
  * Created by Mercury on 2017/7/5.
@@ -114,7 +112,7 @@ public class CarouselGroup extends RelativeLayout {
         linearLayout.addView(llpointGroup);
         this.addView(mViewPager);
 
-        RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams
+        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams
                 .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         this.addView(linearLayout, params);

@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TestActivity" >
 
-    <com.wzh.customviewpager.ui.CarouselGroup
+    <com.mercury.library.CarouselGroup
         android:id="@+id/ca_group"
         android:layout_width="match_parent"
         android:layout_height="160dp"
@@ -15,6 +15,6 @@
         app:pointGroupBottom="10dp"
         app:backgroundColor="@color/transparent">
 
-    </com.wzh.customviewpager.ui.CarouselGroup >
+    </com.mercury.library.CarouselGroup >
 
 </RelativeLayout >

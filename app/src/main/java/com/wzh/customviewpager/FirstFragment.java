@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.wzh.customviewpager.ui.NoScrollViewPager;
+import com.mercury.library.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;

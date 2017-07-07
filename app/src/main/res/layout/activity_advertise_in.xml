@@ -4,17 +4,9 @@
     android:layout_height="match_parent"
     tools:context=".TestActivity" >
 
-    <com.wzh.customviewpager.ui.CarouselViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="160dp" >
-
-    </com.wzh.customviewpager.ui.CarouselViewPager >
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/viewpager"
         android:background="#6000"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -37,13 +29,5 @@
             android:orientation="horizontal" >
         </LinearLayout>
     </LinearLayout>
-
-    <com.wzh.customviewpager.ui.CarouselGroup
-        android:id="@+id/ca_group"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_alignParentBottom="true">
-
-    </com.wzh.customviewpager.ui.CarouselGroup >
 
 </RelativeLayout>

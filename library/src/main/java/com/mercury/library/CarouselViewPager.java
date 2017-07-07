@@ -1,4 +1,4 @@
-package com.wzh.customviewpager.ui;
+package com.mercury.library;
 
 import android.content.Context;
 import android.graphics.Rect;

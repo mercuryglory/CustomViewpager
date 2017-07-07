@@ -3,7 +3,7 @@ package com.wzh.customviewpager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.wzh.customviewpager.ui.CarouselGroup;
+import com.mercury.library.CarouselGroup;
 
 /**
  * created by Mercury at 2017/7/2
