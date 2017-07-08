@@ -17,4 +17,19 @@
 
     </com.mercury.library.CarouselGroup >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:id="@+id/iv"
+        android:scaleType="centerCrop"
+        />
+
+    </RelativeLayout >
+
 </RelativeLayout >
