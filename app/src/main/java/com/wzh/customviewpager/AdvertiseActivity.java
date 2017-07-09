@@ -2,10 +2,16 @@ package com.wzh.customviewpager;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.mercury.library.CarouselGroup;
+
+import static com.wzh.customviewpager.R.drawable.e;
 
 /**
  * created by Mercury at 2017/7/2
@@ -15,7 +21,7 @@ public class AdvertiseActivity extends AppCompatActivity {
 
     private CarouselGroup mGroup;
     private int[]    imageResIds  = {R.drawable.a, R.drawable.b, R.drawable.c,
-            R.drawable.d, R.drawable.e};
+            R.drawable.d, e};
 //    private String[] descriptions = {"巩俐不低俗，我就不能低俗", "朴树又回来啦！再唱经典老歌引万人大合唱",
 //            "揭秘北京电影如何升级", "乐视网TV版大派送", "热血屌丝的反杀"};
     private String[] descriptions={"巩俐不低俗，我就不能低俗", "朴树又回来啦！再唱经典老歌引万人大合唱",
@@ -42,10 +48,34 @@ public class AdvertiseActivity extends AppCompatActivity {
         mGroup.setCarouselAdapter(imageResIds, descriptions);
 
         ImageView iv = (ImageView) findViewById(R.id.iv);
-        Glide.with(this).load("http://img4.c.yinyuetai.com/others/mobile_front_page/170706/0/-M-79b08a2409861e53bd3937dfbaa8bfdd_0x0.jpg")
+
+        RequestListener<String,GlideDrawable> listener =new RequestListener<String, GlideDrawable>() {
+
+            @Override
+            public boolean onException(Exception e, String model, Target<GlideDrawable> target,
+                                       boolean isFirstResource) {
+                Log.i("Advertise", e.getMessage());
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(GlideDrawable resource, String model,
+                                           Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                Log.i("Advertise", "model:" + model);
+                return false;
+            }
+        };
+
+        Glide.with(this).load("https://www.baidu.com/img/bd_logo1.png")
+                .listener(listener)
                 .into(iv);
-//        Glide.with(this).load(R.drawable.a1).into(iv);
+
+
+
+
     }
+
+
 
 
 }
