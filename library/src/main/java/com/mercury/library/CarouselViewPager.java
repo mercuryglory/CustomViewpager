@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 public class CarouselViewPager extends ViewPager {
 
-    private BannerAdapter mBannerAdapter;
+    private BannerIdAdapter mBannerAdapter;
     private int[] imageResIds;
     private Context mContext;
     //用来记录上一个点的位置
@@ -101,12 +101,19 @@ public class CarouselViewPager extends ViewPager {
     }
 
 
+//    public void setBannerAdapter(int[] ids) {
+//        this.imageResIds = ids;
+//        mBannerAdapter = new BannerAdapter();
+//        this.setAdapter(mBannerAdapter);
+//        mHandler.sendEmptyMessageDelayed(0, 2000);
+//
+//    }
+
     public void setBannerAdapter(int[] ids) {
         this.imageResIds = ids;
-        mBannerAdapter = new BannerAdapter();
+        mBannerAdapter = new BannerIdAdapter(mContext, imageResIds);
         this.setAdapter(mBannerAdapter);
         mHandler.sendEmptyMessageDelayed(0, 2000);
-
     }
 
     @Override
