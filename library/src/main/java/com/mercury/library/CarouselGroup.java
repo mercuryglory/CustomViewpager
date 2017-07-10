@@ -3,6 +3,7 @@ package com.mercury.library;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -29,6 +30,10 @@ public class CarouselGroup extends RelativeLayout {
     private float pointGroupBottom;
     private int resourceId;
     private int backGroundColor;
+
+    public ViewPager getPager() {
+        return mViewPager;
+    }
 
     public CarouselGroup(Context context) {
         this(context, null);
@@ -61,8 +66,20 @@ public class CarouselGroup extends RelativeLayout {
     }
 
 
-    public void setCarouselAdapter(int[] imageResIds, String[] description) {
-        int size = imageResIds.length;
+    public void setCarouselAdapter(int[] imageResIds, String[] urls, String[] description) {
+        boolean isUrl = false;
+        int size = 0;
+        if (imageResIds == null || imageResIds.length == 0) {
+            if (urls != null && urls.length > 0) {
+                mViewPager.setBannerAdapter(urls);
+                size = urls.length;
+                isUrl = true;
+            }
+        } else {
+            mViewPager.setBannerAdapter(imageResIds);
+            size = imageResIds.length;
+            isUrl = false;
+        }
 
         //创建轮播图底部的线性布局，纵向排列
         LinearLayout linearLayout = new LinearLayout(mContext);
@@ -108,7 +125,6 @@ public class CarouselGroup extends RelativeLayout {
             llpointGroup.addView(imageView);
         }
 
-        mViewPager.setBannerAdapter(imageResIds);
         linearLayout.addView(llpointGroup);
         this.addView(mViewPager);
 
@@ -116,7 +132,12 @@ public class CarouselGroup extends RelativeLayout {
                 .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         this.addView(linearLayout, params);
-        mViewPager.initListener(description, textView, llpointGroup);
+
+        if (isUrl) {
+            mViewPager.addBannerUrlListener(description, textView, llpointGroup);
+        } else {
+            mViewPager.addBannerIdListener(description, textView, llpointGroup);
+        }
 
     }
 }

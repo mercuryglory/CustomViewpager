@@ -39,6 +39,9 @@ public class BannerUrlAdapter extends PagerAdapter {
         int pos = position % urls.length;
         ImageView imageView = new ImageView(mContext);
         //Todo 根据图片url动态加载
+        if (mOnLoadUrlListener != null) {
+            mOnLoadUrlListener.onLoad(imageView, pos);
+        }
         container.addView(imageView);
         return imageView;
     }
@@ -47,4 +50,15 @@ public class BannerUrlAdapter extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
     }
+
+    public interface OnLoadUrlListener {
+        void onLoad(ImageView imageView, int position);
+    }
+
+    OnLoadUrlListener mOnLoadUrlListener;
+
+    public void setOnLoadUrlListener(OnLoadUrlListener onLoadUrlListener) {
+        mOnLoadUrlListener = onLoadUrlListener;
+    }
+
 }

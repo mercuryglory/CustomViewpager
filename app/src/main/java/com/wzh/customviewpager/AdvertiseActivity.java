@@ -11,8 +11,6 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.mercury.library.CarouselGroup;
 
-import static com.wzh.customviewpager.R.drawable.e;
-
 /**
  * created by Mercury at 2017/7/2
  * descript: 使用轮播图的示例，内部做了封装，不用在使用的Activity或Fragment中监听事件
@@ -20,14 +18,15 @@ import static com.wzh.customviewpager.R.drawable.e;
 public class AdvertiseActivity extends AppCompatActivity {
 
     private CarouselGroup mGroup;
-    private int[]    imageResIds  = {R.drawable.a, R.drawable.b, R.drawable.c,
-            R.drawable.d, e};
+    private int[] imageResIds = {R.drawable.a, R.drawable.b, R.drawable.c,
+            R.drawable.d, R.drawable.e};
+
 //    private String[] descriptions = {"巩俐不低俗，我就不能低俗", "朴树又回来啦！再唱经典老歌引万人大合唱",
 //            "揭秘北京电影如何升级", "乐视网TV版大派送", "热血屌丝的反杀"};
     private String[] descriptions={"巩俐不低俗，我就不能低俗", "朴树又回来啦！再唱经典老歌引万人大合唱",
                 "揭秘北京电影如何升级", "乐视网TV版大派送"};
 
-    private String[] ss = {"https://img20.360buyimg" +
+    private String[] urls = {"https://img20.360buyimg" +
             ".com/da/jfs/t6097/97/4163948835/114126/fa9409a6/595efdb0Nd1563185.jpg",
             "https://img11.360buyimg" +
                     ".com/da/jfs/t5464/106/472798610/142359/66551a05/58ffffc8Naea1f2a2.jpg",
@@ -45,7 +44,14 @@ public class AdvertiseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_advertise);
 
         mGroup = (CarouselGroup) findViewById(R.id.ca_group);
-        mGroup.setCarouselAdapter(imageResIds, descriptions);
+        mGroup.setCarouselAdapter(null, urls, descriptions);
+//        BannerUrlAdapter adapter = (BannerUrlAdapter) mGroup.getPager().getAdapter();
+//        adapter.setOnLoadUrlListener(new BannerUrlAdapter.OnLoadUrlListener() {
+//            @Override
+//            public void onLoad(ImageView imageView, int position) {
+//                Glide.with(AdvertiseActivity.this).load(urls[position]).into(imageView);
+//            }
+//        });
 
         ImageView iv = (ImageView) findViewById(R.id.iv);
 
