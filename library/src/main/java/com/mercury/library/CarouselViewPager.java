@@ -124,9 +124,9 @@ public class CarouselViewPager extends ViewPager {
         mHandler.sendEmptyMessageDelayed(0, 2000);
     }
 
-    public void setBannerAdapter(String[] urls) {
+    public void setUrlAdapter(String[] urls, UrlBanner urlBanner) {
         this.urls = urls;
-        mBannerUrlAdapter = new BannerUrlAdapter(mContext, urls);
+        mBannerUrlAdapter = new BannerUrlAdapter(mContext, urls,urlBanner);
         this.setAdapter(mBannerUrlAdapter);
         mHandler.sendEmptyMessageDelayed(0, 2000);
     }

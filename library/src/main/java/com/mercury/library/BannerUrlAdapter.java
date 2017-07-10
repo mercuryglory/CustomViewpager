@@ -16,12 +16,15 @@ public class BannerUrlAdapter extends PagerAdapter {
 
     private String[] urls;
 
+    private UrlBanner mUrlBanner;
+
     public BannerUrlAdapter() {
     }
 
-    public BannerUrlAdapter(Context context, String[] urls) {
+    public BannerUrlAdapter(Context context, String[] urls,UrlBanner urlBanner) {
         mContext = context;
         this.urls = urls;
+        mUrlBanner = urlBanner;
     }
 
     @Override
@@ -38,9 +41,9 @@ public class BannerUrlAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         int pos = position % urls.length;
         ImageView imageView = new ImageView(mContext);
-        //Todo 根据图片url动态加载
-        if (mOnLoadUrlListener != null) {
-            mOnLoadUrlListener.onLoad(imageView, pos);
+        //根据图片url动态加载，具体以何种方式加载图片暴露给开发者自己决定
+        if (mUrlBanner != null) {
+            mUrlBanner.loadUrlBanner(imageView, pos);
         }
         container.addView(imageView);
         return imageView;
