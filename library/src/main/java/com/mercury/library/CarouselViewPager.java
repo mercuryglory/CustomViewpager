@@ -26,6 +26,8 @@ public class CarouselViewPager extends ViewPager {
     //用来记录上一个点的位置
     private int prePosition = 0;
 
+    private int delayTime;
+
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -34,7 +36,7 @@ public class CarouselViewPager extends ViewPager {
                     // 轮播图显示下一个
                     int currentItem = CarouselViewPager.this.getCurrentItem();
                     CarouselViewPager.this.setCurrentItem(currentItem + 1);
-                    mHandler.sendEmptyMessageDelayed(0, 2000);
+                    mHandler.sendEmptyMessageDelayed(0, delayTime);
                     break;
 
                 default:
@@ -51,6 +53,12 @@ public class CarouselViewPager extends ViewPager {
     public CarouselViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
+
+    }
+
+    public CarouselViewPager(Context context, int delayTime) {
+        this(context);
+        this.delayTime = delayTime;
 
     }
 
@@ -121,14 +129,14 @@ public class CarouselViewPager extends ViewPager {
         this.imageResIds = ids;
         mBannerIdAdapter = new BannerIdAdapter(mContext, ids);
         this.setAdapter(mBannerIdAdapter);
-        mHandler.sendEmptyMessageDelayed(0, 2000);
+        mHandler.sendEmptyMessageDelayed(0, delayTime);
     }
 
     public void setUrlAdapter(String[] urls, UrlBanner urlBanner) {
         this.urls = urls;
         mBannerUrlAdapter = new BannerUrlAdapter(mContext, urls,urlBanner);
         this.setAdapter(mBannerUrlAdapter);
-        mHandler.sendEmptyMessageDelayed(0, 2000);
+        mHandler.sendEmptyMessageDelayed(0, delayTime);
     }
 
     @Override
@@ -139,7 +147,7 @@ public class CarouselViewPager extends ViewPager {
                 mHandler.removeCallbacksAndMessages(null);
                 break;
             case MotionEvent.ACTION_UP:
-                mHandler.sendEmptyMessageDelayed(0, 2000);
+                mHandler.sendEmptyMessageDelayed(0, delayTime);
                 break;
 
             default:

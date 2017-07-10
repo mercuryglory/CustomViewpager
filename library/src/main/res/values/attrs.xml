@@ -12,5 +12,6 @@
         <attr name="textColor" format="color"/>
         <attr name="pointGroupBottom" format="dimension"/>
         <attr name="backgroundColor" format="color" />
+        <attr name="delayTime" format="integer" />
     </declare-styleable>
 </resources >

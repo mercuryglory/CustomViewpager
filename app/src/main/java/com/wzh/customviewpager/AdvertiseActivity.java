@@ -10,6 +10,7 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.mercury.library.CarouselGroup;
+import com.mercury.library.UrlBanner;
 
 /**
  * created by Mercury at 2017/7/2
@@ -18,6 +19,7 @@ import com.mercury.library.CarouselGroup;
 public class AdvertiseActivity extends AppCompatActivity {
 
     private CarouselGroup mGroup;
+    private CarouselGroup mCaResIds;
     private int[] imageResIds = {R.drawable.a, R.drawable.b, R.drawable.c,
             R.drawable.d, R.drawable.e};
 
@@ -43,18 +45,18 @@ public class AdvertiseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advertise);
 
-        mGroup = (CarouselGroup) findViewById(R.id.ca_group);
-        mGroup.setCarouselAdapter(null, urls, descriptions);
-//        BannerUrlAdapter adapter = (BannerUrlAdapter) mGroup.getPager().getAdapter();
-//        adapter.setOnLoadUrlListener(new BannerUrlAdapter.OnLoadUrlListener() {
-//            @Override
-//            public void onLoad(ImageView imageView, int position) {
-//                Glide.with(AdvertiseActivity.this).load(urls[position]).into(imageView);
-//            }
-//        });
+        mGroup = (CarouselGroup) findViewById(R.id.ca_url);
+        mGroup.setCarouselAdapter(urls, descriptions, new UrlBanner() {
+            @Override
+            public void loadUrlBanner(ImageView imageView, int position) {
+                Glide.with(AdvertiseActivity.this).load(urls[position]).into(imageView);
+            }
+        });
+
+        mCaResIds = (CarouselGroup) findViewById(R.id.ca_resId);
+        mCaResIds.setCarouselAdapter(imageResIds, descriptions);
 
         ImageView iv = (ImageView) findViewById(R.id.iv);
-
         RequestListener<String,GlideDrawable> listener =new RequestListener<String, GlideDrawable>() {
 
             @Override

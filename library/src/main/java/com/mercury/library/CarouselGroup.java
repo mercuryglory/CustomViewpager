@@ -29,6 +29,7 @@ public class CarouselGroup extends RelativeLayout {
     private float   pointGroupBottom;
     private int     resourceId;
     private int     backGroundColor;
+    private int delayTime;
 
     public CarouselGroup(Context context) {
         this(context, null);
@@ -55,10 +56,11 @@ public class CarouselGroup extends RelativeLayout {
         pointGroupBottom = a.getDimension(R.styleable.CarouselGroup_pointGroupBottom, 15);
         backGroundColor = a.getColor(R.styleable.CarouselGroup_backgroundColor, Color.argb(127,
                 0, 0, 0));
+        delayTime = a.getInt(R.styleable.CarouselGroup_delayTime, 2000);
 
         a.recycle();
 
-        mViewPager = new CarouselViewPager(context);
+        mViewPager = new CarouselViewPager(context, delayTime);
 
     }
 

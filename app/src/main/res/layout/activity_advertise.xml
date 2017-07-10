@@ -1,34 +1,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TestActivity" >
 
     <com.mercury.library.CarouselGroup
-        android:id="@+id/ca_group"
+        android:id="@+id/ca_url"
         android:layout_width="match_parent"
         android:layout_height="160dp"
+        app:backgroundColor="@color/transparent"
+        app:pointGroupBottom="10dp"
         app:pointMarginLeft="10dp"
         app:pointRes="@drawable/point_bg_selector1"
         app:textColor="@color/light_red"
-        app:pointGroupBottom="10dp"
-        app:backgroundColor="@color/transparent">
+        app:delayTime="3000">
+
+    </com.mercury.library.CarouselGroup >
+
+    <com.mercury.library.CarouselGroup
+        android:id="@+id/ca_resId"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_below="@+id/ca_url"
+        android:layout_marginTop="30dp" >
 
     </com.mercury.library.CarouselGroup >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true" >
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:id="@+id/iv"
-        android:scaleType="centerCrop"
-        />
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop" />
 
     </RelativeLayout >
 
