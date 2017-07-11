@@ -54,14 +54,5 @@ public class BannerUrlAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-    public interface OnLoadUrlListener {
-        void onLoad(ImageView imageView, int position);
-    }
-
-    OnLoadUrlListener mOnLoadUrlListener;
-
-    public void setOnLoadUrlListener(OnLoadUrlListener onLoadUrlListener) {
-        mOnLoadUrlListener = onLoadUrlListener;
-    }
 
 }

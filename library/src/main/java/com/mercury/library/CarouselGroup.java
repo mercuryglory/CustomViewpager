@@ -3,6 +3,8 @@ package com.mercury.library;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -18,7 +20,7 @@ import android.widget.TextView;
 
 public class CarouselGroup extends RelativeLayout {
 
-    CarouselViewPager mViewPager;
+    private CarouselViewPager mViewPager;
     private Context mContext;
     private float   pointMarginLeft;
     private float   textPaddingLeft;
@@ -29,7 +31,6 @@ public class CarouselGroup extends RelativeLayout {
     private float   pointGroupBottom;
     private int     resourceId;
     private int     backGroundColor;
-    private int delayTime;
 
     public CarouselGroup(Context context) {
         this(context, null);
@@ -56,7 +57,7 @@ public class CarouselGroup extends RelativeLayout {
         pointGroupBottom = a.getDimension(R.styleable.CarouselGroup_pointGroupBottom, 15);
         backGroundColor = a.getColor(R.styleable.CarouselGroup_backgroundColor, Color.argb(127,
                 0, 0, 0));
-        delayTime = a.getInt(R.styleable.CarouselGroup_delayTime, 2000);
+        int delayTime = a.getInt(R.styleable.CarouselGroup_delayTime, 2000);
 
         a.recycle();
 
@@ -65,7 +66,7 @@ public class CarouselGroup extends RelativeLayout {
     }
 
 
-    public void setCarouselAdapter(int[] imageResIds, String[] description) {
+    public void setCarouselAdapter(@DrawableRes int[] imageResIds, @Nullable String[] description) {
 
         int size = imageResIds.length;
         mViewPager.setBannerAdapter(imageResIds);
@@ -126,7 +127,7 @@ public class CarouselGroup extends RelativeLayout {
 
     }
 
-    public void setCarouselAdapter(String[] urls, String[] description, UrlBanner urlBanner) {
+    public void setCarouselAdapter(String[] urls,@Nullable String[] description, UrlBanner urlBanner) {
 
         int size = urls.length;
         mViewPager.setUrlAdapter(urls, urlBanner);

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.DrawableRes;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -18,8 +19,8 @@ import android.widget.TextView;
 
 public class CarouselViewPager extends ViewPager {
 
-    private BannerIdAdapter mBannerIdAdapter;
-    private BannerUrlAdapter mBannerUrlAdapter;
+    Rect rect = new Rect();
+
     private int[] imageResIds;
     private String[] urls;
     private Context mContext;
@@ -28,9 +29,9 @@ public class CarouselViewPager extends ViewPager {
 
     private int delayTime;
 
-    private Handler mHandler = new Handler(){
+    private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
-        public void handleMessage(Message msg) {
+        public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
                     // 轮播图显示下一个
@@ -42,8 +43,9 @@ public class CarouselViewPager extends ViewPager {
                 default:
                     break;
             }
+            return false;
         }
-    };
+    });
 
     public CarouselViewPager(Context context) {
         super(context);
@@ -119,23 +121,22 @@ public class CarouselViewPager extends ViewPager {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = getMeasuredWidth();
         int height = getMeasuredHeight();
-        Rect rect = new Rect();
         getWindowVisibleDisplayFrame(rect);
         int top = rect.top;
     }
 
 
-    public void setBannerAdapter(int[] ids) {
+    public void setBannerAdapter(@DrawableRes int[] ids) {
         this.imageResIds = ids;
-        mBannerIdAdapter = new BannerIdAdapter(mContext, ids);
-        this.setAdapter(mBannerIdAdapter);
+        BannerIdAdapter bannerIdAdapter = new BannerIdAdapter(mContext, ids);
+        this.setAdapter(bannerIdAdapter);
         mHandler.sendEmptyMessageDelayed(0, delayTime);
     }
 
     public void setUrlAdapter(String[] urls, UrlBanner urlBanner) {
         this.urls = urls;
-        mBannerUrlAdapter = new BannerUrlAdapter(mContext, urls,urlBanner);
-        this.setAdapter(mBannerUrlAdapter);
+        BannerUrlAdapter bannerUrlAdapter = new BannerUrlAdapter(mContext, urls, urlBanner);
+        this.setAdapter(bannerUrlAdapter);
         mHandler.sendEmptyMessageDelayed(0, delayTime);
     }
 

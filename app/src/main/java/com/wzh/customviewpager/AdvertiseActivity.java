@@ -74,7 +74,8 @@ public class AdvertiseActivity extends AppCompatActivity {
             }
         };
 
-        Glide.with(this).load("https://www.baidu.com/img/bd_logo1.png")
+        Glide.with(this).load("https://img11.360buyimg" +
+                ".com/babel/jfs/t6220/341/1975835028/102643/3e135710/595aff84N87eff326.jpg")
                 .listener(listener)
                 .into(iv);
 
